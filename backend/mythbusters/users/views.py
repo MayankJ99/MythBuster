@@ -22,27 +22,55 @@ def get_question(request, pk):
     serializer = QuestionSerializer(question)
     return Response(serializer.data)
 
-#create a rest api POST call view which uses the serializer for the question model and creates a new question in the DataBase
-# @api_view(['POST'])
-# def create_question(request):
-#     serializer = QuestionSerializer(data=request.data)
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
+# create a rest api POST call view which uses the serializer for the question model and creates a new question in the DataBase
+@api_view(['POST'])
+def create_question(request):
+    user = CurrentUser.objects.all()[0]
+    print(user)
 
-#     return Response(serializer.errors)
+    question = Question.objects.create(
+        user=user,
+        title=request.data['title'],
+        question_text = request.data['question_text']
+    )
 
-#create a GET call for the answer model that gets all the answers from the database
+    serializer = QuestionSerializer(question, many=False)
+    return Response(serializer.data)
+
+
 @api_view(['GET'])
 def get_answers(request):
     answers = Answer.objects.all()
     serializer = AnswerSerializer(answers, many=True)
     return Response(serializer.data)
 
-#create a GET call for the answer model that gets a specific answer from the database
+#create a get call that takes a PK for the question model and returns all answer objects that are related to that question
 @api_view(['GET'])
-def get_answer(request, pk):
-    answer = Answer.objects.get(id=pk)
-    serializer = AnswerSerializer(answer)
+def get_answers_for_question(request, pk):
+    answers = Answer.objects.filter(question=pk)
+    serializer = AnswerSerializer(answers, many=True)
     return Response(serializer.data)
+
+
+#create a POST call that takes a PK for the question model and a new answer object and saves it to the database
+@api_view(['POST'])
+def create_answer(request, pk):
+    user = CurrentUser.objects.all()[1]
+    print(user)
+    question = Question.objects.get(id=pk)
+
+    answer = Answer.objects.create(
+        user=user,
+        question=question,
+        title=request.data['title'],
+        answer_text = request.data['answer_text']
+    )
+
+    serializer = AnswerSerializer(answer, many=False)
+    return Response(serializer.data)
+
+
+
+
+
 

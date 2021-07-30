@@ -33,7 +33,7 @@ class Question(models.Model):
     user = models.ForeignKey(CurrentUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     question_text = models.CharField(max_length=200)
-    created_at = models.DateTimeField('date published')
+    created_at = models.DateTimeField(auto_now_add=True)
     modifed_at = models.DateTimeField(auto_now=True)
     
 
@@ -46,7 +46,7 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     answer_text = models.CharField(max_length=200)
-    created_at = models.DateTimeField('date published')
+    created_at = models.DateTimeField(auto_now_add=True)
     modifed_at = models.DateTimeField(auto_now=True)
     #create a field called answer_upvotes that is a many to many relationship with CurrentUser
     answer_upvotes = models.ManyToManyField(CurrentUser, related_name='answer_upvotes', blank=True)
@@ -58,7 +58,7 @@ class Answer(models.Model):
 class QuestionUpvote(models.Model):
     user = models.ForeignKey(CurrentUser, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    created_at = models.DateTimeField('date published')
+    created_at = models.DateTimeField(auto_now_add=True)
     modifed_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
