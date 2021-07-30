@@ -5,7 +5,9 @@ Branch name: DRF
 
 
 Built using Django DRF
+
 MVP currently includes models for the following :-
+
 - User
 - User Profile
 - Question
@@ -15,7 +17,7 @@ MVP currently includes models for the following :-
 
 Models can be reviewed within users/models.py
 
-URL Routes for API
+## URL Routes for API
 
 - /createQuestion --> POST --> sends form data for the creation of a question instance
 - /createAnswer/{pk} --> POST --> sends form data for the creation of an answer instance using URL param as Primary key for the question instance 
@@ -24,7 +26,7 @@ URL Routes for API
 - /getAnswers/all --> GET --> returns a JSON list of all answer instances (for API testing purposes only)
 - /getAnswers/{pk} --> GET --> returns JSON list of all answer objects that are related to the question with ID of PK
 
-TODO for Backend:
+## TODO for Backend:
 
 - Add models for tagging or use Django Taggit
 - Add models for comments under answers or questions.
@@ -37,7 +39,7 @@ TODO for Backend:
 - Add testing for API routes
 - Host Website
 
-##Installation
+## Installation
 
 - cd into /backend
 - run pip install -r requirements.txt
