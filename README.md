@@ -41,3 +41,7 @@
 ### Links
 
 - [**Figma Deisgn**](https://www.figma.com/file/WLTnyGZKwMNvhOSAfOfqhC/Web-UI?node-id=0%3A1)
+
+### Backend
+
+-[**Backend API**](https://github.com/MayankJ99/MythBuster/tree/DRF)
