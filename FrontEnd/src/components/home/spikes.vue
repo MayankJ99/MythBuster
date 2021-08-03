@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row style="margin-top: 1%">
       <h1 class="spikeText">Spikes</h1>
       <v-spacer></v-spacer>
       <v-btn
@@ -52,51 +52,25 @@
         </v-container>
       </v-item-group>
     </template>
-    <v-row>
-      <h1 class="postsText">Posts</h1>
-      <v-spacer></v-spacer>
-      <v-btn
-        class="postsBtn popular white--text"
-        depressed
-        elevation="2"
-        raised
-        rounded
-        small
-        color="#9673ff"
-        >Popular
-      </v-btn>
-      <v-btn
-        class="postsBtn recent white--text"
-        depressed
-        elevation="2"
-        raised
-        rounded
-        small
-        color="#57BAff"
-        >Recent
-      </v-btn>
-    </v-row>
   </v-container>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
-  data: () => ({}),
+  name: "SpikesSeciton",
 };
 </script>
 
-<style>
+<style scoped>
 .spikeText {
   color: #57baff;
-  margin-top: 1%;
   margin-left: 2%;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .spikeVideos {
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .spikeVideoSubtitle {
@@ -108,7 +82,7 @@ export default {
 }
 
 .spikeBtn {
-  margin-top: 2%;
+  margin-top: 1%;
   text-transform: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -122,20 +96,5 @@ export default {
 .recent {
   opacity: 0.7;
   margin-right: 2%;
-}
-
-.postsText {
-  color: #57baff;
-  margin-top: 3%;
-  margin-left: 2%;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.postsBtn {
-  margin-top: 4%;
-  text-transform: none;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 </style>
