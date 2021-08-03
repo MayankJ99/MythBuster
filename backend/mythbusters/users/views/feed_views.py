@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from .serializers import *
-from .models import *
+from rest_framework.decorators import api_view, permission_classes
+from users.serializers import *
+from users.models import *
 # Create your views here.
-
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 #create a rest api GET call view which will use the serializer for the question model and return all the questions in the DataBase
 @api_view(['GET'])
@@ -67,10 +68,7 @@ def create_answer(request, pk):
     )
 
     serializer = AnswerSerializer(answer, many=False)
-    return Response(serializer.data)
-
-
-
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 

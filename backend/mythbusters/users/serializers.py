@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import *
 
@@ -27,3 +28,42 @@ class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
         fields = '__all__'
+
+#create a serializer for the User model for django
+class UserSerializer(serializers.ModelSerializer):
+    # questions = serializers.PrimaryKeyRelatedField(many=True, queryset=Question.objects.all())
+    # answers = serializers.PrimaryKeyRelatedField(many=True, queryset=Answer.objects.all())
+    class Meta:
+        model = User
+        # fields = ('id', 'username', 'questions', 'answers')
+        fields = ('id', 'username', 'email',)
+
+class UserSerializerWithToken(UserSerializer):
+    token = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'token',]
+
+    def get_token(self, obj):
+        token = RefreshToken.for_user(obj)
+        return str(token.access_token)
+
+#create a serializer for the User model for Django including a primary key related field to UserProfile
+class UserProfileSerializer(serializers.ModelSerializer):
+    profile = serializers.SerializerMethodField('get_profile')
+
+    def get_profile(self, obj):
+        profile = UserProfile.objects.get(user=obj)
+        return ProfileSerializer(profile).data
+
+    class Meta:
+        model = User
+        # fields = '__all__'
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'profile',)
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = "__all__"
+   

@@ -20,5 +20,6 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     #include urls from users app using path()
-    path('', include('users.urls')),
+    path('api/users/', include('users.urls.users_urls')),
+    path('api/feed/', include('users.urls.feed_urls')),
 ]
