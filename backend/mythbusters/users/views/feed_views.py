@@ -115,7 +115,7 @@ def update_answer(request, pk):
 def delete_question(request, pk):
     question = Question.objects.get(id=pk)
     question.delete()
-    message = {message, 'Question deleted succesfully'}
+    message = { 'Question deleted succesfully'}
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 #create a DELETE call that takes a PK for the answer model and deletes the answer object from the database
@@ -125,7 +125,7 @@ def delete_answer(request, pk):
     answer = Answer.objects.get(id=pk)
     answer.delete()
     message = {'Answer deleted successfully'}
-    return Response(message, status=status.HTTP_204_NO_CONTENT)
+    return Response( status=status.HTTP_204_NO_CONTENT)
 
 
 #to be added to urls.py
