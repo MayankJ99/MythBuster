@@ -8,10 +8,7 @@ from .models import *
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True)
     count = serializers.SerializerMethodField('answer_count')
-    upvotes= serializers.SerializerMethodField('get_upvote_count') 
-
-    def get_upvote_count(self, obj):
-        return QuestionUpvote.objects.filter(question=obj).count()
+    
 
     def answer_count(self, obj):
         return Answer.objects.filter(question=obj).count()

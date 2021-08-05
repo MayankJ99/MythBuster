@@ -35,6 +35,7 @@ class Question(models.Model):
     question_text = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
     modifed_at = models.DateTimeField(auto_now=True)
+    question_upvotes = models.ManyToManyField(CurrentUser, related_name='question_upvotes', blank=True)
     
 
     def __str__(self):
@@ -55,14 +56,14 @@ class Answer(models.Model):
 
 #create a class called question_upvotes that acts a join table between users and questions as a many to many relationship. This class has a question foreign key and a user 
 #foreign key. Each user can have multiple upvotes and each question can have multiple upvotes.
-class QuestionUpvote(models.Model):
-    user = models.ForeignKey(CurrentUser, on_delete=models.CASCADE)
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    modifed_at = models.DateTimeField(auto_now=True)
+# class QuestionUpvote(models.Model):
+#     user = models.ForeignKey(CurrentUser, on_delete=models.CASCADE)
+#     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     modifed_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return "{}".format(self.question)
+#     def __str__(self):
+#         return "{}".format(self.question)
 
 #create a class called answer_upvotes that acts a join table between users and questions as a many to many relationship. This class has a question foreign key and a user 
 #foreign key. Each user can have multiple upvotes and each question can have multiple upvotes.
@@ -74,13 +75,5 @@ class QuestionUpvote(models.Model):
 
 #     def __str__(self):
 #         return "{}".format(self.answer)
-
-
-        
-
-
-
-
-
 
 # Create your models here.

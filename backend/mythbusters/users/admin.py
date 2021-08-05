@@ -8,6 +8,6 @@ admin.site.register(UserProfile)
 #regiser model for question, answer, questionUpvotes and answerUpvote
 admin.site.register(Question)
 admin.site.register(Answer)
-admin.site.register(QuestionUpvote)
+# admin.site.register(QuestionUpvote)
 # admin.site.register(AnswerUpvote)
 
