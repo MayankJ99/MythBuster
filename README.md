@@ -48,4 +48,16 @@ Models can be reviewed within users/models.py
 - run python manage.py migrate
 - run python manage.py runserver
 
+
 Go to localhost:8000/ for API
+=======
+- Web Development
+- Back end development
+- Cloud Hosting
+- Database Design
+
+### Links
+
+- [**Figma Deisgn**](https://www.figma.com/file/WLTnyGZKwMNvhOSAfOfqhC/Web-UI?node-id=0%3A1)
+- [**Backend API**](https://github.com/MayankJ99/MythBuster/tree/DRF)
+
