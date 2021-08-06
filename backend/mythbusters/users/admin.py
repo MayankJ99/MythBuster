@@ -11,3 +11,4 @@ admin.site.register(Answer)
 # admin.site.register(QuestionUpvote)
 # admin.site.register(AnswerUpvote)
 
+admin.site.register(Tags)

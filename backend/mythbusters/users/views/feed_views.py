@@ -11,9 +11,23 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 #create a rest api GET call view which will use the serializer for the question model and return all the questions in the DataBase
 @api_view(['GET'])
 def get_questions(request):
-    questions = Question.objects.all()
-    serializer = QuestionSerializer(questions, many=True)
-    return Response(serializer.data)
+    if 'keyword' in request.GET:
+        query = request.GET['keyword']
+        keywords = query.split(' ')
+        questions = Question.objects.all()
+        answers = Answer.objects.all()
+        for keyword in keywords:
+            questions = questions.filter(question_text__contains=keyword)
+            answers = answers.filter(answer_text__contains=keyword)
+        serializer = QuestionSerializer(questions, many=True)
+        serializer1 = AnswerSerializer(answers, many=True)
+        #return json response where we can get the questions and answers in key value pairs
+        return JsonResponse({'questions': serializer.data, 'answers': serializer1.data})
+
+    else:   
+        questions = Question.objects.all()
+        serializer = QuestionSerializer(questions, many=True)
+        return Response(serializer.data)
 
 
 #create a rest api GET call view which uses the serializer for the question model and returns a specific question in the DataBase
@@ -52,6 +66,12 @@ def create_question(request):
         title=request.data['title'],
         question_text = request.data['question_text']
     )
+    if 'tags' in request.data:
+        tags = request.data['tags']
+        tags_list = tags.split(',')
+        for tag in tags_list:
+            question.tags.add(tag)
+    question.save()
 
     serializer = QuestionSerializer(question, many=False)
     return Response(serializer.data)
@@ -177,3 +197,9 @@ def remove_user_upvote_to_question(request, pk):
 
 
 
+#create a GET call that takes a tag and returns all questions with that tag
+@api_view(['GET'])
+def get_questions_by_tag(request, tag):
+    questions = Question.objects.filter(tags__tag_name__in=[tag])
+    serializer = QuestionSerializer(questions, many=True)
+    return Response(serializer.data)

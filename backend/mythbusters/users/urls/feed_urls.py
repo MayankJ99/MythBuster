@@ -23,5 +23,9 @@ urlpatterns = [
     path('deleteAnswer/<str:pk>', delete_answer, name='deleteAnswer'),
     path('upvoteAnswer/<str:pk>', add_user_upvote_to_answer, name='upvoteAnswer'),
     path('downvoteAnswer/<str:pk>', remove_user_upvote_to_answer, name='downvoteAnswer'),
+
+    #get questions by tag name
+    path('tag/<str:tag>', get_questions_by_tag, name='questions_by_tag'),
+    #add a path to include a query string 
 ]
 
