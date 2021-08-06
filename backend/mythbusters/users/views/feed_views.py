@@ -71,7 +71,7 @@ def create_question(request):
         tags_list = tags.split(',')
         for tag in tags_list:
             question.tags.add(tag)
-    question.save()
+        question.save()
 
     serializer = QuestionSerializer(question, many=False)
     return Response(serializer.data)
@@ -193,9 +193,6 @@ def remove_user_upvote_to_question(request, pk):
     question.save()
     serializer = QuestionSerializer(question, many=False)
     return Response(serializer.data)
-
-
-
 
 #create a GET call that takes a tag and returns all questions with that tag
 @api_view(['GET'])
