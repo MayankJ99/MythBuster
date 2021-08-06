@@ -1,4 +1,4 @@
-import { login } from "../../services/auth";
+import { login, register } from "../../services/auth";
 
 const state = {
     user: null,
@@ -15,6 +15,10 @@ const mutations = {
 const actions = {
     async login(commit, { username, password }) {
         const authResponse = await login(username, password).catch((e) => e);
+        commit("setUser", authResponse.data);
+    },
+    async register(commit, accountInfo) {
+        const authResponse = await register(accountInfo).catch((e) => e);
         commit("setUser", authResponse.data);
     },
 };
