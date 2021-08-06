@@ -24,7 +24,7 @@
         >Recent
       </v-btn>
     </v-row>
-    <v-col v-for="n in 2" :key="n" style="margin-top: 1%">
+    <v-col v-for="n in 2" :key="n">
       <v-card color="#252a36" dark elevation="0">
         <v-card-title class="text-h5 title">
           Default VueJS projects require less files than default ReactJS
@@ -86,6 +86,7 @@
             >
           </v-row>
         </v-card-actions>
+        <!-- <v-divider style="margin-top: 4%"></v-divider> -->
       </v-card>
     </v-col>
   </v-container>

@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bindings": "^1.5.0",
     "core-js": "^3.6.5",
+    "file-uri-to-path": "^2.0.0",
+    "nan": "^2.15.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.4.0",
@@ -17,10 +20,10 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-eslint": "^3.1.1",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-service": "^4.5.13",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

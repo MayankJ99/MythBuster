@@ -26,20 +26,22 @@
             projects
           </v-card-title>
           <v-card-text>January 1, 1970</v-card-text>
-          <v-card-text class="desc"
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
-            lacinia, metus in pharetra facilisis, libero est mattis lorem, non
-            dictum felis nulla nec ante. Integer placerat neque eu risus auctor,
-            id dapibus eros consequat. Quisque accumsan iaculis dolor eget
-            pharetra. Nunc mollis consequat ante, a iaculis felis lacinia quis.
-            Vivamus aliquet aliquam imperdiet. Aliquam erat volutpat. Donec
-            ultricies dolor a tortor bibendum faucibus. Vestibulum mollis in
-            turpis sit amet vehicula. Duis ultrices, purus sed laoreet bibendum,
-            urna lectus rutrum mauris, vel finibus magna elit quis massa. Nulla
-            sed nulla et mi dignissim gravida. Phasellus consequat feugiat
-            libero, et tristique sapien euismod in. Sed et sem eget orci
-            malesuada rhoncus et eget nulla. Suspendisse pulvinar id nunc non
-            ullamcorper.
+          <v-card-text class="desc">
+            <vue-markdown>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+              lacinia, metus in pharetra facilisis, libero est mattis lorem, non
+              dictum felis nulla nec ante. Integer placerat neque eu risus
+              auctor, id dapibus eros consequat. Quisque accumsan iaculis dolor
+              eget pharetra. Nunc mollis consequat ante, a iaculis felis lacinia
+              quis. Vivamus aliquet aliquam imperdiet. Aliquam erat volutpat.
+              Donec ultricies dolor a tortor bibendum faucibus. Vestibulum
+              mollis in turpis sit amet vehicula. Duis ultrices, purus sed
+              laoreet bibendum, urna lectus rutrum mauris, vel finibus magna
+              elit quis massa. Nulla sed nulla et mi dignissim gravida.
+              Phasellus consequat feugiat libero, et tristique sapien euismod
+              in. Sed et sem eget orci malesuada rhoncus et eget nulla.
+              Suspendisse pulvinar id nunc non ullamcorper.
+            </vue-markdown>
           </v-card-text>
           <v-card-text class="desc">
             Pellentesque sollicitudin consequat cursus. Cras purus dolor,
