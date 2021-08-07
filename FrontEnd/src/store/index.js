@@ -7,11 +7,11 @@ import auth from "./modules/auth";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    state: {},
-    mutations: {},
-    actions: {},
-    modules: {
-        posts,
-        auth,
-    },
+  state: {},
+  mutations: {},
+  actions: {},
+  modules: {
+    posts,
+    auth,
+  },
 });

@@ -1,31 +1,31 @@
 import { login, register } from "../../services/auth";
 
 const state = {
-    user: null,
+  user: null,
 };
 
 const getters = {
-    getUser: (state) => state.user,
+  getUser: (state) => state.user,
 };
 
 const mutations = {
-    setUser: (state, user) => (state.user = user),
+  setUser: (state, user) => (state.user = user),
 };
 
 const actions = {
-    async login(commit, { username, password }) {
-        const authResponse = await login(username, password).catch((e) => e);
-        commit("setUser", authResponse.data);
-    },
-    async register(commit, accountInfo) {
-        const authResponse = await register(accountInfo).catch((e) => e);
-        commit("setUser", authResponse.data);
-    },
+  async login(commit, { username, password }) {
+    const authResponse = await login(username, password).catch((e) => e);
+    commit("setUser", authResponse.data);
+  },
+  async register(commit, accountInfo) {
+    const authResponse = await register(accountInfo).catch((e) => e);
+    commit("setUser", authResponse.data);
+  },
 };
 
 export default {
-    state,
-    getters,
-    mutations,
-    actions,
+  state,
+  getters,
+  mutations,
+  actions,
 };

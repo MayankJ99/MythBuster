@@ -1,10 +1,14 @@
 <template>
   <v-form>
     <v-stepper v-model="stepper">
-      <v-stepper-step step="1" :complete="stepper > 2">
+      <v-stepper-step
+        step="1"
+        :complete="stepper > 2"
+        style="background-color: #1b1e27"
+      >
         Account Info
       </v-stepper-step>
-      <v-stepper-content step="1">
+      <v-stepper-content step="1" style="background-color: #1b1e27">
         <v-text-field
           v-model="registrationInfo.username"
           label="Username"
@@ -26,10 +30,14 @@
         />
         <v-btn color="primary" @click="stepper = 2">Continue</v-btn>
       </v-stepper-content>
-      <v-stepper-step step="2" :complete="stepper > 3">
+      <v-stepper-step
+        step="2"
+        :complete="stepper > 3"
+        style="background-color: #1b1e27"
+      >
         Your Info
       </v-stepper-step>
-      <v-stepper-content step="2">
+      <v-stepper-content step="2" style="background-color: #1b1e27">
         <v-text-field
           v-model="registrationInfo.first_name"
           label="First Name"
@@ -69,8 +77,10 @@
         <v-btn @click="stepper = 1">Back</v-btn>
         <v-btn color="primary" @click="stepper = 3">Continue</v-btn>
       </v-stepper-content>
-      <v-stepper-step step="3"> Social Media </v-stepper-step>
-      <v-stepper-content step="3">
+      <v-stepper-step step="3" style="background-color: #1b1e27">
+        Social Media
+      </v-stepper-step>
+      <v-stepper-content step="3" style="background-color: #1B1E27">
         <v-text-field
           v-model="registrationInfo.linkedin"
           label="LinkedIn"
