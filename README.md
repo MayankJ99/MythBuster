@@ -1,6 +1,42 @@
 ## Programming Myth Buster Hub
 
-## Backend API
+### Front End
+
+After pulling the repository, go into the frontend folder
+
+```
+cd ./frontend
+```
+
+Install dependencies
+
+```
+npm i
+```
+
+OR
+
+```
+npm install
+```
+
+Create an ENV file with reference to the Back End API
+
+Example: .env.development
+
+```
+VUE_APP_API_URL=http://localhost:8000
+```
+
+You may start the front end by running
+
+```
+npm run serve
+```
+
+### Backend API
+Branch name: DRF
+
 Built using Django DRF
 
 MVP currently includes models for the following :-
