@@ -13,13 +13,15 @@ const mutations = {
 };
 
 const actions = {
-  async login(commit, { username, password }) {
+  async login({ commit }, { username, password }) {
     const authResponse = await login(username, password).catch((e) => e);
     commit("setUser", authResponse.data);
+    return authResponse;
   },
-  async register(commit, accountInfo) {
+  async register({ commit }, accountInfo) {
     const authResponse = await register(accountInfo).catch((e) => e);
     commit("setUser", authResponse.data);
+    return authResponse;
   },
 };
 
