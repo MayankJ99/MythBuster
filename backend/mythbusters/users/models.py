@@ -29,6 +29,17 @@ class UserProfile(models.Model):
     def __str__(self):  
         return "{}'s profile".format(self.user)
 
+
+class Tags(models.Model):
+    tag_name = models.CharField(max_length=256, unique=True)
+
+    def __str__(self):
+        return self.tag_name
+
+    class Meta:
+        ordering = ('tag_name',)
+        unique_together = ('tag_name',)
+
 class Question(models.Model):
     user = models.ForeignKey(CurrentUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
@@ -36,10 +47,11 @@ class Question(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modifed_at = models.DateTimeField(auto_now=True)
     question_upvotes = models.ManyToManyField(CurrentUser, related_name='question_upvotes', blank=True)
-    
+    tags = models.ManyToManyField(Tags, blank=True, null=True)
 
     def __str__(self):
         return "{}".format(self.question_text)
+
 
 #create a model called answer with a foreign key relationship to question with the fields for title, content, created_at, user, modifed_at
 class Answer(models.Model):
