@@ -80,7 +80,7 @@
       <v-stepper-step step="3" style="background-color: #1b1e27">
         Social Media
       </v-stepper-step>
-      <v-stepper-content step="3" style="background-color: #1B1E27">
+      <v-stepper-content step="3" style="background-color: #1b1e27">
         <v-text-field
           v-model="registrationInfo.linkedin"
           label="LinkedIn"
