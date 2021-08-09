@@ -3,13 +3,13 @@
     <v-form class="form">
       <v-text-field
         style="margin-bottom: 2%"
-        v-model="registrationInfo.username"
+        v-model="loginInfo.username"
         label="Username"
         outlined
       />
       <v-text-field
         style="margin-bottom: 4%"
-        v-model="registrationInfo.password"
+        v-model="loginInfo.password"
         label="Password"
         outlined
       />
@@ -28,31 +28,98 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
-      registrationInfo: {
+      snackbar: false,
+      loginState: 0, // 0 - Data entry, 1 - Processing, 2 - Success, 3 - Failure
+      loginInfo: {
         username: "",
         password: "",
+      },
+      rules: {
+        username(value) {
+          return (
+            /^[a-zA-Z0-9]{4,}$/g.test(value) ||
+            "Your username must be at least 4 alphanumeric characters"
+          );
+        },
+        eightMinimum(value) {
+          return (
+            /^[\S]{8,}$/.test(value) || "This field needs at least 8 characters"
+          );
+        },
+        password(value) {
+          if (!/[a-z]/g.test(value)) {
+            return "Your password needs at least one lower case letter";
+          }
+          if (!/[A-Z]/g.test(value)) {
+            return "Your password needs at least one upper case letter";
+          }
+          if (!/[0-9]/g.test(value)) {
+            return "Your password needs at least one number";
+          }
+          if (!/[\x21-\x2F\x3A-\x40\x5B-\x60\x7B-\x7E]/g.test(value)) {
+            return "Your password needs at least one special character";
+          }
+          return true;
+        },
+        nonEmpty(value) {
+          return (
+            (value !== "" && value !== null && value !== undefined) ||
+            "This field cannot be empty"
+          );
+        },
       },
     };
   },
   methods: {
-    usernameRule(value) {
-      return /^[a-zA-Z0-9]{4,}$/g.test(value)
-        ? null
-        : "Usernames may only be alphanumeric characters";
+    ...mapActions(["login"]),
+    async onLoginClick() {
+      this.loginState = 1;
+      let loginResponse = await this.login(
+        this.loginInfo.username,
+        this.loginInfo.password
+      );
+      this.loginState = loginResponse.status === 201 ? 2 : 3;
+      if (loginResponse.status) {
+        setTimeout(() => {
+          this.$router.push("/");
+        }, 1000);
+      }
     },
-    eightMinimum(value) {
-      return /^[\S]{8,}$/.test(value) ? null : "This field cannot be empty";
+  },
+  computed: {
+    snackbarColor() {
+      switch (this.loginState) {
+        case 1:
+          return "warning";
+        case 2:
+          return "success";
+        case 3:
+          return "error";
+        default:
+          return "info";
+      }
     },
-    nonEmpty(value) {
-      return /^.{1,}[\S]*.{1,}$/.test(value)
-        ? null
-        : "This field cannot be empty";
+    snackbarText() {
+      switch (this.loginState) {
+        case 1:
+          return "Logging in...";
+        case 2:
+          return "Logged in!";
+        case 3:
+          return "Error Logging in";
+        default:
+          return "Something seems strange...";
+      }
     },
-    onLoginClick() {
-      console.log(this.registrationInfo);
+  },
+  watch: {
+    loginState(value) {
+      this.snackbar = value !== 0;
     },
   },
 };
