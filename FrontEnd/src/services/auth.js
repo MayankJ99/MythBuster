@@ -9,7 +9,7 @@ export async function login(username, password) {
 
 export async function register(userInfo) {
   return await axios.post(
-    `${process.env.VUE_APP_API_URL}/api/users/register`,
+    `${process.env.VUE_APP_API_URL}/api/users/register/`,
     userInfo
   );
 }
