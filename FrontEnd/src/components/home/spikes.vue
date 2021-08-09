@@ -27,23 +27,17 @@
     <template>
       <v-item-group class="spikeVideos">
         <v-container>
-          <v-row>
-            <v-col v-for="n in 6" :key="n" cols="12" md="2">
-              <v-item v-slot="{ active, toggle }">
-                <v-card
-                  :color="active ? 'primary' : ''"
-                  class="d-flex align-center"
-                  dark
-                  height="250"
-                  width="200"
-                  elevation="6"
-                  @click="toggle"
-                >
-                  <v-scroll-y-transition>
-                    <div v-if="active" class="text-h2 flex-grow-1 text-center">
-                      Active
-                    </div>
-                  </v-scroll-y-transition>
+          <v-row style="row">
+            <v-col v-for="n in 5" :key="n" cols="12" md="2" class="col">
+              <v-item style="border-radius: 10px">
+                <v-card dark elevation="6" height="250" width="200">
+                  <video
+                    controls
+                    height="250"
+                    width="170"
+                    class="video"
+                    src="https://sample-videos.com/video123/mp4/240/big_buck_bunny_240p_10mb.mp4"
+                  />
                 </v-card>
               </v-item>
               <p class="spikeVideoSubtitle">17 chained 🔥</p>
@@ -56,8 +50,14 @@
 </template>
 
 <script>
+// import videoPlayer from "vue-md-player";
+// import "vue-md-player/dist/vue-md-player.css";
+
 export default {
   name: "SpikesSeciton",
+  // components: {
+  //   videoPlayer,
+  // },
 };
 </script>
 
@@ -75,7 +75,7 @@ export default {
 
 .spikeVideoSubtitle {
   margin-top: 10px;
-  margin-left: 1%;
+  margin-left: 4%;
   color: #979797;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -95,6 +95,12 @@ export default {
 
 .recent {
   opacity: 0.7;
+  margin-right: 2%;
+}
+.video {
+  object-fit: cover;
+}
+.col {
   margin-right: 2%;
 }
 </style>
