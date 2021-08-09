@@ -156,7 +156,7 @@ def update_user(request):
         serializer = UserProfileSerializer(user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Exception as err:
-        message = {'Something went wrong'}
+        message = {"error" : err}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -169,8 +169,7 @@ def delete_user(request):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     except Exception as err:
-        print(err)
-        message = {'Something went wrong'}
+        message = {"error" : err}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
     
 

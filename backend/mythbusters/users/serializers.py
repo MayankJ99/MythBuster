@@ -37,8 +37,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 #create a serializer for the User model for django
 class UserSerializer(serializers.ModelSerializer):
-    # questions = serializers.PrimaryKeyRelatedField(many=True, queryset=Question.objects.all())
-    # answers = serializers.PrimaryKeyRelatedField(many=True, queryset=Answer.objects.all())
     class Meta:
         model = User
         # fields = ('id', 'username', 'questions', 'answers')
