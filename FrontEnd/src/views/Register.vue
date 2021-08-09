@@ -1,7 +1,6 @@
 <template>
   <v-container class="ma-6 cont">
     <v-row>
-      <!-- <v-spacer class="d-xs-none d-md-flex" /> -->
       <v-col cols="12" md="7">
         <v-card color="#1B1E27" rounded dark elevation="4">
           <v-card-title>Sign Up</v-card-title>
@@ -10,7 +9,6 @@
           </v-card-text>
         </v-card>
       </v-col>
-      <!-- <v-spacer class="d-xs-none d-md-flex" /> -->
       <v-col cols="12" md="5">
         <v-row class="title">
           <h2 class="myth">Myth&nbsp;</h2>
@@ -22,9 +20,13 @@
             discussed and scrutinized
           </p>
         </v-row>
-        
+
         <v-row class="animation">
-          <v-img src="../assets/animation.svg" class="ma-10 animation" max-width="24rem"></v-img>
+          <v-img
+            src="../assets/animation.svg"
+            class="ma-10 animation"
+            max-width="24rem"
+          ></v-img>
         </v-row>
       </v-col>
     </v-row>
