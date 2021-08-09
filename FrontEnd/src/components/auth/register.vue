@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 <template>
   <v-form ref="registerForm" lazy-validation>
     <v-snackbar top v-model="snackbar" :timeout="3000" :color="snackbarColor">

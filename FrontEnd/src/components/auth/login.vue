@@ -1,17 +1,29 @@
 <template>
   <v-container class="container">
-    <v-form class="form">
+    <v-form class="form" ref="loginForm" lazy-validation>
+      <v-snackbar top v-model="snackbar" :timeout="3000" :color="snackbarColor">
+        {{ snackbarText }}
+      </v-snackbar>
       <v-text-field
         style="margin-bottom: 2%"
         v-model="loginInfo.username"
         label="Username"
         outlined
+        dense
+        :rules="[rules.nonEmpty, rules.username]"
+        ref="formUsername"
+        class="pt-1"
       />
       <v-text-field
         style="margin-bottom: 4%"
         v-model="loginInfo.password"
         label="Password"
         outlined
+        dense
+        ref="formPassword"
+        class="pt-1"
+        type="password"
+        :rules="[rules.nonEmpty, rules.password, rules.eightMinimum]"
       />
       <v-btn
         dark
@@ -90,6 +102,18 @@ export default {
         }, 1000);
       }
     },
+    attemptNextStep() {
+      if (
+        !(
+          this.$refs["formUsername"].validate() &&
+          this.$refs["formPassword"].validate()
+        )
+      ) {
+        this.$refs["loginForm"].validate();
+        return;
+      }
+      this.$refs["loginForm"].resetValidation();
+    },
   },
   computed: {
     snackbarColor() {
@@ -138,5 +162,8 @@ export default {
 .form {
   margin-top: 4%;
   margin-bottom: 4%;
+}
+.container {
+  background-color: #252a36;
 }
 </style>
