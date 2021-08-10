@@ -137,6 +137,8 @@ def update_user(request):
             user_profile.bio = data['bio']
         if 'linkedin' in data:
             user_profile.linkedin = data['linkedin']
+        if 'profile_image' in data:
+            user_profile.profile_image = data['profile_image']
         if 'twitter' in data:
             user_profile.twitter = data['twitter']
         if 'github' in data:
