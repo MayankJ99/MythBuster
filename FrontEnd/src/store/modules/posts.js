@@ -1,25 +1,37 @@
+import { getAllPosts } from "../../services/posts";
+
 const state = {
-    posts: null,
-    postsStatus: 0, // -1: error, 0: Not loaded, 1: Posts Loading, 2: Posts Loaded Successfully
+  posts: null,
+  postsStatus: 0, // -1: error, 0: Not loaded, 1: Posts Loading, 2: Posts Loaded Successfully
 };
 
 const getters = {
-    getPosts: (state) => state.posts,
-    getPostsStatus: (state) => state.postsStatus,
+  getPosts: (state) => state.posts,
+  getPostsStatus: (state) => state.postsStatus,
 };
 
 const mutations = {
-    setPosts: (state, newPostList) => (state.posts = newPostList),
-    setPostsStatus: (state, updatedStatus) => (state.postsStatus = updatedStatus),
+  setPosts: (state, newPostList) => (state.posts = newPostList),
+  setPostsStatus: (state, updatedStatus) => (state.postsStatus = updatedStatus),
 };
 
 const actions = {
-    // TODO: Add functions to retrieve posts from API
+  // TODO: Add functions to retrieve posts from API
+  async loadAllPosts({ commit }) {
+    let allPostsResponse = await getAllPosts();
+    if (allPostsResponse.status == 200) {
+      commit("setPosts", allPostsResponse.data);
+      return allPostsResponse.data;
+    } else {
+      commit("setPostsStatus", -1);
+      return [];
+    }
+  },
 };
 
 export default {
-    state,
-    getters,
-    mutations,
-    actions,
+  state,
+  getters,
+  mutations,
+  actions,
 };

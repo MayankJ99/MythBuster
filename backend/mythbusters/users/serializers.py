@@ -4,10 +4,18 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .models import *
 
+
+#create a serializer for the Tags model that will return the name of the Tag rather than the pk
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tags
+        fields = ['tag_name']
+
 #from the Question model create a serializer for all the fields
 class QuestionSerializer(serializers.ModelSerializer):
     user = serializers.CharField(source='user.username', read_only=True)
     count = serializers.SerializerMethodField('answer_count')
+    tags = TagSerializer(many=True, read_only=True)
     
 
     def answer_count(self, obj):
@@ -17,6 +25,7 @@ class QuestionSerializer(serializers.ModelSerializer):
         model = Question
         fields = '__all__'
         extra_kwargs = {'username':{'required':False}}
+
 
 #create a serializer for the anwser model
 class AnswerSerializer(serializers.ModelSerializer):
@@ -28,8 +37,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 #create a serializer for the User model for django
 class UserSerializer(serializers.ModelSerializer):
-    # questions = serializers.PrimaryKeyRelatedField(many=True, queryset=Question.objects.all())
-    # answers = serializers.PrimaryKeyRelatedField(many=True, queryset=Answer.objects.all())
     class Meta:
         model = User
         # fields = ('id', 'username', 'questions', 'answers')

@@ -137,6 +137,8 @@ def update_user(request):
             user_profile.bio = data['bio']
         if 'linkedin' in data:
             user_profile.linkedin = data['linkedin']
+        if 'profile_image' in data:
+            user_profile.profile_image = data['profile_image']
         if 'twitter' in data:
             user_profile.twitter = data['twitter']
         if 'github' in data:
@@ -156,7 +158,7 @@ def update_user(request):
         serializer = UserProfileSerializer(user)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     except Exception as err:
-        message = {'Something went wrong'}
+        message = {"error" : err}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -169,8 +171,7 @@ def delete_user(request):
         user.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
     except Exception as err:
-        print(err)
-        message = {'Something went wrong'}
+        message = {"error" : err}
         return Response(message, status=status.HTTP_400_BAD_REQUEST)
     
 
