@@ -1,3 +1,5 @@
+import { getAllPosts } from "../../services/posts";
+
 const state = {
   posts: null,
   postsStatus: 0, // -1: error, 0: Not loaded, 1: Posts Loading, 2: Posts Loaded Successfully
@@ -15,6 +17,16 @@ const mutations = {
 
 const actions = {
   // TODO: Add functions to retrieve posts from API
+  async loadAllPosts({ commit }) {
+    let allPostsResponse = await getAllPosts();
+    if (allPostsResponse.status == 200) {
+      commit("setPosts", allPostsResponse.data);
+      return allPostsResponse.data;
+    } else {
+      commit("setPostsStatus", -1);
+      return [];
+    }
+  },
 };
 
 export default {

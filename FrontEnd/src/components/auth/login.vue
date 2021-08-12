@@ -25,14 +25,7 @@
         type="password"
         :rules="[rules.nonEmpty, rules.password, rules.eightMinimum]"
       />
-      <v-btn
-        dark
-        outlined
-        class="mr-4"
-        @click="onLoginClick"
-        color="#9673FF"
-        ripple="#9673FF"
-      >
+      <v-btn dark outlined class="mr-4" @click="onLoginClick" color="#9673FF">
         Login
       </v-btn>
     </v-form>
@@ -91,11 +84,11 @@ export default {
     ...mapActions(["login"]),
     async onLoginClick() {
       this.loginState = 1;
-      let loginResponse = await this.login(
-        this.loginInfo.username,
-        this.loginInfo.password
-      );
-      this.loginState = loginResponse.status === 201 ? 2 : 3;
+      let loginResponse = await this.login({
+        username: this.loginInfo.username,
+        password: this.loginInfo.password,
+      });
+      this.loginState = loginResponse.status === 200 ? 2 : 3;
       if (loginResponse.status) {
         setTimeout(() => {
           this.$router.push("/");
