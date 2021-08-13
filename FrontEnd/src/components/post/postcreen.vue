@@ -19,11 +19,6 @@ import post from "./post.vue";
 export default {
   components: { post },
   name: "PostScreen",
-  // data() {
-  //   return {
-  //     posts: null,
-  //   }
-  // },
   created() {
     this.loadAllPosts();
   },

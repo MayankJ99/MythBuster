@@ -1,4 +1,4 @@
-import { login, register } from "../../services/auth";
+import { login, register, getCurrentUserInfo } from "../../services/auth";
 
 const state = {
   user: null,
@@ -16,6 +16,8 @@ const actions = {
   async login({ commit }, { username, password }) {
     const authResponse = await login(username, password).catch((e) => e);
     commit("setUser", authResponse.data);
+    const userInfo = await getCurrentUserInfo().catch((e) => e);
+    commit("setUser", { ...authResponse.data, ...userInfo.data });
     return authResponse;
   },
   async register({ commit }, accountInfo) {
