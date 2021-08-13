@@ -1,4 +1,4 @@
-import { getAllPosts } from "../../services/posts";
+import { createPost, getAllPosts } from "../../services/posts";
 
 const state = {
   posts: null,
@@ -26,6 +26,13 @@ const actions = {
       commit("setPostsStatus", -1);
       return [];
     }
+  },
+  async createPost({ commit, state }, postInfo) {
+    let newPostResponse = await createPost(postInfo).catch((e) => e);
+    if (newPostResponse.status === 200) {
+      commit("setPosts", [...state.posts, newPostResponse.data]);
+    }
+    return newPostResponse.data;
   },
 };
 

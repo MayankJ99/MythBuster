@@ -13,3 +13,7 @@ export async function register(userInfo) {
     userInfo
   );
 }
+
+export async function getCurrentUserInfo() {
+  return await axios.get(`${process.env.VUE_APP_API_URL}/api/users/profile/`);
+}
