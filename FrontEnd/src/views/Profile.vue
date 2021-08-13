@@ -37,7 +37,10 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-container class="ma-14 pa-0 cont">
+    <v-container class="ma-14 pa-0">
+      <v-row>
+        <v-col>Your Posts</v-col>
+      </v-row>
       <v-row class="start">
         <v-col :key="post.id" v-for="post in userPosts" cols="12">
           <post
@@ -67,11 +70,11 @@ export default {
   computed: {
     ...mapGetters(["getUser", "getPosts"]),
     userPosts() {
-      return this.getPosts
-        ? this.getPosts.filter((post) => {
-            post.user === this.getUser.username;
-          })
+      let posts = this.getPosts
+        ? this.getPosts.filter((post) => post.user === this.getUser.username)
         : [];
+      console.log(posts);
+      return posts;
     },
     createdDate() {
       const monthList = [
