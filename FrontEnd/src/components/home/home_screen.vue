@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <spikes-seciton />
+    <!-- <spikes-seciton /> -->
     <posts-section />
   </v-container>
 </template>
